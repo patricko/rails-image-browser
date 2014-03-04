@@ -6,8 +6,18 @@
       %img{ src:"#{@base}#{item}?size=thumb", width:"128px", height:"128px" }>
       %br
       = item
-other
-%br
-- @other_files.each do |item|
-  = link_to item, "#{@base}#{item}"
+- if @subfolders.length > 0
   %br
+  %b directories:
+  %br
+  - @subfolders.each do |item|
+    = link_to item, "#{@base}#{item}"
+    %br
+
+- if @other_files.length > 0
+  %br
+  %b Non-image files:
+  %br
+  - @other_files.each do |item|
+    = link_to item, "#{@base}#{item}"
+    %br

@@ -15,9 +15,22 @@ class SlideFileController < ApplicationController
 
     if File.exists?(path)
       if File.directory?(path)
-        files = Dir.foreach(path)
-        @image_files = files.select {|i| is_image?(i) }
-        @other_files = files.select {|i| !is_image?(i) }
+        @image_files = []
+        @other_files = []
+        @subfolders = []
+
+        Dir.foreach(path).each do |file|
+          if is_image?(file)
+            @image_files << file
+          elsif file[0] != '.'
+            if File.directory?("#{path}/#{file}")
+              @subfolders << file
+            else
+              @other_files << file
+            end
+          end
+        end
+
         @base = "/#{params[:path]}"
         @base = "#{@base}/" if @base.last != '/'
         render 'index', formats: :html
