@@ -36,7 +36,7 @@ class SlideFileController < ApplicationController
           end
           return_image(path, params[:size])
         else
-          render :text => open(path, "rb").read
+          send_file(path, disposition: 'inline', type: MIME::Types.type_for(path).first, x_sendfile: true)
         end
       end
     else
