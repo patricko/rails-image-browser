@@ -1,4 +1,6 @@
-%h1= URI.unescape(@filename)
+%h1
+  = link_to request.host_with_port, root_path
+  = URI.unescape(@filename)
 
 %a{ href: @filename }
   %img{ src: "#{@filename}?size=preview" }

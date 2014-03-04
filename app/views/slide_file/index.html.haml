@@ -1,5 +1,6 @@
-%h1 @base
-%p= @base
+%h1
+  = link_to request.host_with_port, root_path
+  = @base
 - @image_files.each do |item|
   .thumb_cell
     %a{ href:"#{@base}#{item}?size=preview&preview=true"}>

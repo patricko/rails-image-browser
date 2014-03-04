@@ -31,7 +31,7 @@ class SlideFileController < ApplicationController
           end
         end
 
-        @base = "/#{params[:path]}"
+        @base = "#{URI.unescape(request.path)}"
         @base = "#{@base}/" if @base.last != '/'
         render 'index', formats: :html
       else
@@ -61,7 +61,7 @@ class SlideFileController < ApplicationController
 
 private
   def is_image?(file_name)
-    file_name =~ /\.(jpg|png)$/i
+    file_name =~ /\.(jpg|png|gif)$/i
   end
 
   def return_image(path, size)
