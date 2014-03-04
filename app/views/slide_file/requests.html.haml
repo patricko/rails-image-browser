@@ -1,0 +1,10 @@
+%h1 SlideFile
+%p= @base
+- @image_files.each do |item|
+  = link_to item, "#{@base}#{item}"
+  %br
+
+other
+- @other_files.each do |item|
+  = link_to item, "#{@base}#{item}"
+  %br

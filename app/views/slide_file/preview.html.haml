@@ -1,0 +1,4 @@
+%h1= URI.unescape(@filename)
+
+%a{ href: @filename }
+  %img{ src: "#{@filename}?size=preview" }

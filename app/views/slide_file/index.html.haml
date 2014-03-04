@@ -1,0 +1,17 @@
+%h1 @base
+%p= @base
+%table
+  - @image_files.in_groups_of(6).each do |group|
+    %tr
+      - group.each do |item|
+        - next if !item
+        %td{width: 128, height: 150, align: 'center'}
+          %a{ href:"#{@base}#{item}?size=preview&preview=true"}
+            %img{ src:"#{@base}#{item}?size=thumb" }
+            %br
+            = item
+other
+%br
+- @other_files.each do |item|
+  = link_to item, "#{@base}#{item}"
+  %br
