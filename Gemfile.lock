@@ -100,8 +100,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.2.1)
-      coffee-rails
     tzinfo (0.3.38)
     unicorn (4.8.2)
       kgio (~> 2.6)
@@ -122,5 +120,4 @@ DEPENDENCIES
   rmagick
   sass-rails (~> 4.0.0)
   sqlite3
-  turbolinks
   unicorn

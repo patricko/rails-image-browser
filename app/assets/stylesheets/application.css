@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
  */
+
+.thumb_cell {
+  width: 150px;
+  height: 180px;
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
+}
