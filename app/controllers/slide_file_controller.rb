@@ -2,15 +2,8 @@ require_dependency 'image_tools'
 require 'mime/types'
 
 class SlideFileController < ApplicationController
-  HOST_DIR_MAP = {
-      'localhost' => '/Users/patricko/Desktop',
-      :default => '/Users/patricko/slides',
-  }
-
-  DEFAULT_DIR = HOST_DIR_MAP[:default]
-
   def requests
-    dir = HOST_DIR_MAP[request.host] || DEFAULT_DIR
+    dir = HostMap.host_to_root(request.host)
     path = "#{dir}#{URI.unescape(request.path)}"
 
     if File.exists?(path)
