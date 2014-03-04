@@ -56,15 +56,15 @@ private
 
     max_dim = 0
     cache_folder = nil
-
+    force_square = false
     case size
-      when 'thumb' then max_dim = 128; cache_folder = '.thumbnails'
-      when 'preview' then max_dim = 800; cache_folder = '.preview'
+      when 'thumb' then max_dim = 128; cache_folder = '.thumbnails'; force_square = true
+      when 'preview' then max_dim = 800; cache_folder = '.previews'
     end
 
     if cache_folder
       target_path = build_target_path(path, cache_folder)
-      ImageTools.scale(path, target_path, max_dim) unless File.exist?(target_path)
+      ImageTools.scale(path, target_path, max_dim, force_square) unless File.exist?(target_path)
     else
       target_path = path
     end
