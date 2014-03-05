@@ -8,6 +8,11 @@ class SlideFileController < ApplicationController
 
     if File.exists?(path)
       if File.directory?(path)
+        if File.exists?("#{path}/index.html")
+          send_file("#{path}/index.html", disposition: 'inline', type: 'text/html', x_sendfile: true)
+          return
+        end
+
         @image_files = []
         @other_files = []
         @subfolders = []
