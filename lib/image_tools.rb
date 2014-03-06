@@ -1,5 +1,3 @@
-require 'RMagick'
-
 class ImageTools
   def ImageTools.scale(source_path, target_path, max_dimension, force_square=true)
     img = Magick::Image::read(source_path).first
