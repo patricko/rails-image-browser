@@ -6,6 +6,8 @@ class SlideFileController < ApplicationController
     dir = HostMap.host_to_root(request.host)
     path = "#{dir}#{URI.unescape(request.path)}"
 
+    @page_title = URI.unescape(request.path)
+
     if File.exists?(path)
       if File.directory?(path)
         if File.exists?("#{path}/index.html")
