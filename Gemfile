@@ -11,6 +11,8 @@ group :assets do
   gem 'coffee-rails', '~> 4.0.0'
 end
 
+gem 'uglifier'
+
 gem 'jquery-rails'
 
 # Use unicorn as the app server
