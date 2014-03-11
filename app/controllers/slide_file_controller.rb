@@ -2,11 +2,23 @@ require_dependency 'image_tools'
 require 'mime/types'
 
 class SlideFileController < ApplicationController
+  before_filter :setup_breadcrumbs
+
+  def setup_breadcrumbs
+    @breadcrumbs = [ [request.host_with_port, root_path] ]
+
+    path = URI.unescape(request.path)[1..-1]
+    partial = ''
+
+    path.split('/').each do |part|
+      partial += "/#{part}"
+      @breadcrumbs << [part, partial]
+    end
+  end
+
   def requests
     dir = HostMap.host_to_root(request.host)
     path = "#{dir}#{URI.unescape(request.path)}"
-
-    @page_title = URI.unescape(request.path)
 
     if File.exists?(path)
       if File.directory?(path)

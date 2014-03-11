@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @page_title %></title>
+  <title><%= @breadcrumbs.last[0] %></title>
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<%= raw @breadcrumbs.map { |link| (link[1] == request.path) ? link[0] : link_to(link[0], link[1]) }.join(' | ') %>
 
 <%= yield %>
 
