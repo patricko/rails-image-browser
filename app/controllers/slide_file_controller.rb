@@ -2,7 +2,7 @@ require_dependency 'image_tools'
 require 'mime/types'
 
 class SlideFileController < ApplicationController
-  before_filter :setup_breadcrumbs
+  before_action :setup_breadcrumbs
 
   def setup_breadcrumbs
     @breadcrumbs = [ [request.host_with_port, root_path] ]
