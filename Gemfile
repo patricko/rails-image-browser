@@ -15,8 +15,8 @@ gem 'uglifier'
 
 gem 'jquery-rails'
 
-# Use unicorn as the app server
-gem 'unicorn'
+# Use puma as the app server
+gem 'puma'
 
 # Deploy with Capistrano
 # gem 'capistrano'
