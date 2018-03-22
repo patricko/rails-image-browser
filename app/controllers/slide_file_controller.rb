@@ -17,7 +17,7 @@ class SlideFileController < ApplicationController
   end
 
   def requests
-    dir = HostMap.host_to_root(request.host)
+   dir = HostMap.host_to_root(request.host)
     path = "#{dir}#{URI.unescape(request.path)}"
 
     if File.exists?(path)
