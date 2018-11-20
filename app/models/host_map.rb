@@ -2,6 +2,9 @@ class HostMap
   @@host_to_root_map = nil
 
   def HostMap.host_to_root(host)
+    puts "HOSTS XXX"
+    puts @@host_to_root_map.inspect
+    puts "host #{host}"
     if !@@host_to_root_map
       image_map_root = ENV["RAILS_IMAGE_ROOT"] || '/rails_images'
 
