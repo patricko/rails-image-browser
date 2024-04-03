@@ -7,7 +7,7 @@ class SlideFileController < ApplicationController
   def setup_breadcrumbs
     @breadcrumbs = [ [request.host_with_port, root_path] ]
 
-    path = URI.unescape(request.path)[1..-1]
+    path = CGI.unescape(request.path)[1..-1]
     partial = ''
 
     path.split('/').each do |part|
@@ -17,12 +17,12 @@ class SlideFileController < ApplicationController
   end
 
   def requests
-   dir = HostMap.host_to_root(request.host)
-    path = "#{dir}#{URI.unescape(request.path)}"
+    dir = HostMap.host_to_root(request.host)
+    path = "#{dir}#{CGI.unescape(request.path)}"
 
-    if File.exists?(path)
+    if File.exist?(path)
       if File.directory?(path)
-        if File.exists?("#{path}/index.html")
+        if File.exist?("#{path}/index.html")
           send_file("#{path}/index.html", disposition: 'inline', type: 'text/html', x_sendfile: true)
           return
         end
@@ -43,7 +43,7 @@ class SlideFileController < ApplicationController
           end
         end
 
-        @base = "#{URI.unescape(request.path)}"
+        @base = "#{CGI.unescape(request.path)}"
         @base = "#{@base}/" if @base.last != '/'
         render 'index', formats: :html
       else
@@ -59,7 +59,7 @@ class SlideFileController < ApplicationController
         end
       end
     else
-      raise ActionController::RoutingError.new("File Not Found - #{path} - #{URI.unescape(path)} -- #{params.inspect}")
+      raise ActionController::RoutingError.new("File Not Found - #{path} - #{CGI.unescape(path)} -- #{params.inspect}")
     end
   end
 
@@ -73,7 +73,7 @@ class SlideFileController < ApplicationController
 
 private
   def is_image?(file_name)
-    file_name =~ /\.(jpg|png|gif)$/i
+    file_name =~ /\.(jpg|jpeg|png|gif)$/i
   end
 
   def return_image(path, size)
